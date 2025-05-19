@@ -88,15 +88,15 @@ pipeline {
                     echo "Pushing images to registry: ${DOCKER_REGISTRY}"
                     // Push frontend image
                     sh "/usr/local/bin/docker push ${FRONTEND_IMAGE_NAME}:${IMAGE_TAG}"
-                    sh "/usr/local/bin/docker push ${FRONTEND_IMAGE_NAME}:latest"
+                    //sh "/usr/local/bin/docker push ${FRONTEND_IMAGE_NAME}:latest"
 
                     // Push caption image
                     sh "/usr/local/bin/docker push ${CAPTION_IMAGE_NAME}:${IMAGE_TAG}"
-                    sh "/usr/local/bin/docker push ${CAPTION_IMAGE_NAME}:latest"
+                    //sh "/usr/local/bin/docker push ${CAPTION_IMAGE_NAME}:latest"
 
                     // Push object detection image
                     sh "/usr/local/bin/docker push ${OBJECT_IMAGE_NAME}:${IMAGE_TAG}"
-                    sh "/usr/local/bin/docker push ${OBJECT_IMAGE_NAME}:latest"
+                    //sh "/usr/local/bin/docker push ${OBJECT_IMAGE_NAME}:latest"
                 }
             }
         }
