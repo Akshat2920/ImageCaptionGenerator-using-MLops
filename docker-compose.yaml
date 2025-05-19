@@ -4,7 +4,7 @@ services:
   # --- Caption Backend Service ---
   caption:
     build: ./caption # Directory containing the caption Dockerfile
-    image: parvg/caption:latest
+    image: akshat2911/caption:latest
     container_name: caption-service
     ports:
       # Expose caption service on host port 8001, mapping to container port 8000
@@ -22,7 +22,7 @@ services:
   # --- Object Detection Backend Service ---
   object:
     build: ./object # Directory containing the object Dockerfile
-    image: parvg/object:latest
+    image: akshat2911/object:latest
     container_name: object-service
     ports:
       # Expose object service on host port 8003, mapping to container port 8002
@@ -40,7 +40,7 @@ services:
   # --- Frontend Service ---
   frontend:
     build: ./frontend # Directory containing the frontend Dockerfile
-    image: parvg/spefrontend:latest
+    image: akshat2911/spefrontend:latest
     container_name: frontend-service
     ports:
       # Expose frontend on host port 8080, mapping to container port 80
