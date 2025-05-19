@@ -110,8 +110,8 @@ pipeline {
                         export KUBECONFIG="$USERPROFILE/.kube/config"
                         
                         # Verify kubectl can access the cluster
-                        kubectl config use-context docker-desktop
-                        kubectl cluster-info
+                        /opt/homebrew/bin/kubectl config use-context docker-desktop
+                        /opt/homebrew/bin/kubectl cluster-info
                     '''
                 }
             }
@@ -124,40 +124,40 @@ pipeline {
                     
                     try {
                         // 1. Create namespace if it doesn't exist
-                        sh "kubectl apply -f kubernetes/namespace.yaml"
+                        sh "/opt/homebrew/bin/kubectl apply -f kubernetes/namespace.yaml"
 
                         // 2. Apply shared model PVC
-                        sh "kubectl apply -f kubernetes/shared-model.yaml"
+                        sh "/opt/homebrew/bin/kubectl apply -f kubernetes/shared-model.yaml"
 
                         // 3. Apply services
-                        sh "kubectl apply -f kubernetes/frontend-service.yaml"
-                        sh "kubectl apply -f kubernetes/backend-service.yaml"
-                        sh "kubectl apply -f kubernetes/object-detector-service.yaml"
+                        sh "/opt/homebrew/bin/kubectl apply -f kubernetes/frontend-service.yaml"
+                        sh "/opt/homebrew/bin/kubectl apply -f kubernetes/backend-service.yaml"
+                        sh "/opt/homebrew/bin/kubectl apply -f kubernetes/object-detector-service.yaml"
 
                         // 4. Apply ingress
-                        sh "kubectl apply -f kubernetes/ingress.yaml"
+                        sh "/opt/homebrew/bin/kubectl apply -f kubernetes/ingress.yaml"
 
                         // 5. Apply monitoring
-                        sh "kubectl apply -f kubernetes/app-servicemonitors.yaml"
-                        sh "kubectl apply -f kubernetes/grafana-ingress.yaml"
+                        sh "/opt/homebrew/bin/kubectl apply -f kubernetes/app-servicemonitors.yaml"
+                        sh "/opt/homebrew/bin/kubectl apply -f kubernetes/grafana-ingress.yaml"
 
                         // 6. Update deployments with new images
                         sh """
-                            kubectl set image deployment/frontend-deployment frontend=${FRONTEND_IMAGE_NAME}:${IMAGE_TAG} -n ${K8S_NAMESPACE} --record
-                            kubectl set image deployment/backend-deployment backend=${CAPTION_IMAGE_NAME}:${IMAGE_TAG} -n ${K8S_NAMESPACE} --record
-                            kubectl set image deployment/object-detector-deployment object-detector=${OBJECT_IMAGE_NAME}:${IMAGE_TAG} -n ${K8S_NAMESPACE} --record
+                            /opt/homebrew/bin/kubectl set image deployment/frontend-deployment frontend=${FRONTEND_IMAGE_NAME}:${IMAGE_TAG} -n ${K8S_NAMESPACE} --record
+                            /opt/homebrew/bin/kubectl set image deployment/backend-deployment backend=${CAPTION_IMAGE_NAME}:${IMAGE_TAG} -n ${K8S_NAMESPACE} --record
+                            /opt/homebrew/bin/kubectl set image deployment/object-detector-deployment object-detector=${OBJECT_IMAGE_NAME}:${IMAGE_TAG} -n ${K8S_NAMESPACE} --record
                         """
 
                         // 7. Wait for rollouts to complete
                         sh """
-                            kubectl rollout status deployment/frontend-deployment -n ${K8S_NAMESPACE} --timeout=5m
-                            kubectl rollout status deployment/backend-deployment -n ${K8S_NAMESPACE} --timeout=5m
-                            kubectl rollout status deployment/object-detector-deployment -n ${K8S_NAMESPACE} --timeout=5m
+                            /opt/homebrew/bin/kubectl rollout status deployment/frontend-deployment -n ${K8S_NAMESPACE} --timeout=5m
+                            /opt/homebrew/bin/kubectl rollout status deployment/backend-deployment -n ${K8S_NAMESPACE} --timeout=5m
+                            /opt/homebrew/bin/kubectl rollout status deployment/object-detector-deployment -n ${K8S_NAMESPACE} --timeout=5m
                         """
                     } catch (Exception e) {
                         echo "Error during Kubernetes deployment: ${e.message}"
-                        sh 'kubectl get pods -n ${K8S_NAMESPACE}'
-                        sh 'kubectl describe pods -n ${K8S_NAMESPACE}'
+                        sh '/opt/homebrew/bin/kubectl get pods -n ${K8S_NAMESPACE}'
+                        sh '/opt/homebrew/bin/kubectl describe pods -n ${K8S_NAMESPACE}'
                         throw e
                     }
                 }
