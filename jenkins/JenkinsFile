@@ -5,7 +5,7 @@ pipeline {
         // --- Configuration ---
         DOCKER_REGISTRY = 'docker.io'
         DOCKER_USERNAME = 'akshat2911'
-        DOCKER_CREDENTIALS_ID = 'docker-hub-credentials'
+        DOCKER_CREDENTIALS_ID = 'DockerHubCred'
         KUBECONFIG_CREDENTIALS_ID = 'kube-config'
         K8S_NAMESPACE = 'spe-project'
         
