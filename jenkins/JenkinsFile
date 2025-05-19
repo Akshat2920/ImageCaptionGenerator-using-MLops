@@ -135,6 +135,11 @@ pipeline {
                         sh "/opt/homebrew/bin/kubectl apply -f kubernetes/backend-service.yaml"
                         sh "/opt/homebrew/bin/kubectl apply -f kubernetes/object-detector-service.yaml"
 
+                        // 3.2 Apply deployments 
+                        sh "/opt/homebrew/bin/kubectl apply -f kubernetes/frontend-deployment.yaml"
+                        sh "/opt/homebrew/bin/kubectl apply -f kubernetes/backend-deployment.yaml"
+                        sh "/opt/homebrew/bin/kubectl apply -f kubernetes/object-detector-deployment.yaml"
+
                         // 4. Apply ingress
                         sh "/opt/homebrew/bin/kubectl apply -f kubernetes/ingress.yaml"
 
