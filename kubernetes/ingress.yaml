@@ -5,6 +5,11 @@ metadata:
   namespace: spe-project
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+
+     # --- TIMEOUT FIXES ---
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "600"
     # NO global rewrite annotation
     # NO snippets
 spec:
