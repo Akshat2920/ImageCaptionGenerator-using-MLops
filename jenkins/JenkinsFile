@@ -15,7 +15,8 @@ pipeline {
         OBJECT_IMAGE_NAME = "${DOCKER_USERNAME}/object"
         
         // Use build number for image tags
-        IMAGE_TAG = "build-${BUILD_NUMBER}"
+        //IMAGE_TAG = "build-${BUILD_NUMBER}"
+         IMAGE_TAG = "latest"
         
         // Email configuration
         EMAIL_RECIPIENTS = 'akshatlal211@gmail.com@gmail.com'
