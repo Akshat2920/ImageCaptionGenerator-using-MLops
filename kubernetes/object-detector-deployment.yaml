@@ -74,7 +74,7 @@ spec:
       # --- Main Application Container ---
       containers:
       - name: object-detector
-        image: parvg/object:latest # Your object detection image
+        image: akshat2911/object:latest # Your object detection image
         ports:
         - name: http-object # Named port for ServiceMonitor
           containerPort: 8001 # Port your app listens on
