@@ -3,7 +3,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: grafana-ingress
-  namespace: monitoring # Deploy Ingress in the same namespace as Grafana service
+  namespace: spe-project # Deploy Ingress in the same namespace as Grafana service
   annotations:
     # Annotation for NGINX Ingress Controller to strip the path prefix
     nginx.ingress.kubernetes.io/rewrite-target: /$2 # Capture group 2 from path regex
