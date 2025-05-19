@@ -107,7 +107,7 @@ pipeline {
                     // Set KUBECONFIG environment variable to use Docker Desktop's config
                     sh '''
                         # Set KUBECONFIG to use Docker Desktop's config
-                        //export KUBECONFIG=$HOME/.kube/config
+                        export KUBECONFIG=$HOME/.kube/config
                         
                         # Verify kubectl can access the cluster
                         /opt/homebrew/bin/kubectl config use-context docker-desktop
