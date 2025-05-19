@@ -123,7 +123,7 @@ spec:
       # --- Main Application Container ---
       containers:
       - name: backend
-        image: parvg/caption:latest # Your captioning image
+        image: akshat2911/caption:latest # Your captioning image
         ports:
         - name: http-caption # Named port for ServiceMonitor
           containerPort: 8000
