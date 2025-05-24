@@ -19,7 +19,7 @@ pipeline {
          IMAGE_TAG = "latest"
         
         // Email configuration
-        EMAIL_RECIPIENTS = 'akshatlal211@gmail.com@gmail.com'
+        EMAIL_RECIPIENTS = 'akshatlal211@gmail.com'
     }
 
     options {
